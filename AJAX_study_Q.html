@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ko-KR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+  </head>
+  <body>
+    <script>
+      //1. XMLHttpRequest
+      // () 안을 작성하시오
+      const x = new XMLHttpRequest();
+
+      // 1.
+      x.()('GET', 'https://section.blog.naver.com/');
+
+      x.onreadystatechange = function () {
+        //    2.                              3.
+        if (x.() === XMLHttpRequest.DONE && x.() === 200) {
+          const response = JSON.parse(x.responseText);
+        }
+      };
+      //            4.
+      console.log(x.()());
+
+      //
+      //
+      //
+      // 2. console.log(프로미스); 할 때의 각 출력값을 써보시오 콘솔에 직접 써보기 금지
+
+      // promise
+      var 프로미스 = new Promise(function (성공, 실패) {
+        setTimeout(function () {
+          //  성공(); // ?
+        }, 1000);
+        // 성공(); // ?
+        // 실패(); // ?
+      });
+
+      프로미스
+        .then(function () {
+          console.log('성공했어요');
+        })
+        .catch(function () {
+          console.log('실패했습니다');
+        });
+
+      console.log(프로미스); // ?
+    </script>
+
+    <!-- 3.  -->
+    <!-- Promise를 사용한 이미지 로딩 문제 -->
+    <!--각각 따로 
+        로딩 성공 or 실패 이미지는 화면에 출력되게 ,
+        '로딩 성공' or '로딩 실패'는 콘솔에 출력되게 하시오 -->
+
+    <!-- (1) 로딩성공 이미지 -->
+    <!-- <img id="testImg" src="img/zany-face_1f92a.png" alt="smile" /> -->
+
+    <!-- (2) 로딩실패 이미지 -->
+    <!-- <img id="testImg" src="img/zany-face_1f92a11.png" alt="smile" /> -->
+
+    <script>
+      var imgLoad = new Promise(function (성공, 실패) {
+        //
+        // load , error  이벤트를 사용
+        //
+      });
+
+      //
+    </script>
+
+    <!-- 4. 각 () 안을 작성하시오 -->
+    <script>
+      // 1.
+        ()('https://section.blog.naver.com/')
+        // 2.
+          .()((response) => {
+            if (!response.ok) {
+              throw new Error('400 or 500 error');
+            }
+            return response.json();
+          })
+          // 3.
+          .()((result2) => {
+            console.log(result2);
+          })
+          //4.
+          .()(() => {
+            console.log('error');
+          });
+    </script>
+
+    <!-- 5. -->
+    <div class="btn">버튼</div>
+    <script>
+      // ()안을 작성하고 result에 어떤 값이 나오는지 작성하시오. 콘솔 작성 금지
+      () function plus() {
+        var promise_el = new Promise(function (success, failed) {
+          var sum = 1 + 1;
+          success(100);
+        });
+
+        var result = () promise_el;
+        console.log(result);
+      }
+      console.log(plus());
+
+      // 6.
+      // 버튼 클릭시 성공 결과를 async / await 이용하여 'GOOD!'이라는 결과를 출력하시오
+      function btnClear() {
+        var clear = new Promise(function (good, no) {
+          // ?
+        });
+      }
+      console.log(btnClear()); //GOOD!
+    </script>
+  </body>
+</html>

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ko-KR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+  </head>
+  <body>
+    <script>
+      //   //1. XMLHttpRequest : 서버와의 비동기 통신을 가능하게 하는 여러 기능들을 가진 자바스크립트 객체
+
+      //   // XMLHttpRequest객체는 웹브라우저에서 제공 , 서버와 통신 가능할 수 있다
+      //   const x = new XMLHttpRequest(); // 객체 생성
+
+      //   // open() 메서드는 서버와의 통신을 준비
+      //   x.open('GET', 'https://section.blog.naver.com/'); // (HTTP 요청 방법 지정, 요청할 URL) -> GET 메서드로 json url 로 데이터를 요청
+
+      //   x.onreadystatechange = function () {
+      //     // onreadystatechange -> 서버와의 통신 상태가 변경될 때마다 호출하는 이벤트리스너
+
+      //     // readyState와 status를 사용해 서버로부터 응답이 완료됐는지 확인
+      //     // readyState은 현재 상태를 나타내는값
+      //     // XMLHttpRequest.DONE은 요청이 완료 되었음을 나타낸다
+      //     // status 는 HTTP 상태 코드를 나타낸다
+      //     // HTTP 상태 코드가 200인 경우에만 JSON 데이터를 가져오고 출력
+      //     if (x.readyState === XMLHttpRequest.DONE && x.status === 200) {
+      //       const response = JSON.parse(x.responseText); // 응답 받은 데이터는 responseText 를 사용하여 문자열 형태로 얻는다 // JSON형식의 데이터를 받기 때문에 JSON.parse() 함수로 자바스크립트 객체로 변환
+      //       console.log(response);
+      //     }
+      //   };
+      //   console.log(x.send()); // send() 메서드는 요청을 서버로 보낸다.
+      //   // open() 메서드에서 지정한 URL로 데이터를 요청한다
+      //   // -> 결론 : XMLHttpRequest 객체의 open() 메서드를 사용하여 GET 요청을 생성하고 send() 메서드를 사용하여 서버에 요청을 전송한다
+
+      //
+      //
+      //
+      //   // 2.
+      //   // promise: 순차적실행을 위해 콜백함수 대신 쓸 수 있는 코드 디자인 패턴이다
+      //   // 일반 콜백함수 -> 1번 -> 2번 실행
+      //   // Promise 객체 -> 1번 -> 2번 실행, 실패-> 3번 실행
+      //   // ✨외우기 Promise() : 성공/실패 판정 기계이다
+      //   // 프로미스 안에서 성공/실패 판정이 내려짐에 따라 then/catch가 실행된다
+
+      //   // ✅ Promise의 3가지 상태
+      //   // 성공 시 콘솔에 -> Promise {<fulfilled> 비동기처리 완료되어 프로미스가 결과값을 반환한 상태}
+      //   // 판정 대기중 일시 콘솔에 -> Promise {<Pending> 비동기 처리 로직이 아직 완료되지 않은 상태}
+      //   // 성공 시 콘솔에 -> Promise {<Rejected> 비동기 처리가 실패하거나 오류가 발생한 상태}
+      //   var 프로미스 = new Promise(function (성공, 실패) {
+      //     setTimeout(function () {
+      //       // 1초후 성공 판정
+      //       성공(); // <Pending> // setTimeout 함수가 아직 미호출 상태
+      //     }, 1000);
+      //     // 성공(); // <fulfilled>
+      //     // 실패(); // <Rejected>
+      //   });
+
+      //   프로미스
+      //     .then(function () {
+      //       // 1초후 결과 출력
+      //       console.log('성공했어요');
+      //     })
+      //     .catch(function () {
+      //       console.log('실패했습니다');
+      //     });
+
+      //   console.log(프로미스);
+      //   //
+    </script>
+
+    <!-- 3.  -->
+    <!-- Promise를 사용한 이미지 로딩 문제 -->
+    <!-- 로딩성공 이미지 -->
+    <!-- <img id="testImg" src="img/zany-face_1f92a.png" alt="smile" /> -->
+
+    <!-- <img id="testImg" src="img/zany-face_1f92a11.png" alt="smile" /> -->
+    <!-- 로딩실패 이미지 -->
+    <script>
+      //   var imgLoad = new Promise(function (성공, 실패) {
+      //     var img = document.querySelector('#testImg');
+
+      //     img.addEventListener('load', function () {
+      //       // load() : 이미지의 로딩 상태 체크 이벤트
+      //       성공();
+      //     });
+      //     img.addEventListener('error', function () {
+      //       실패();
+      //     });
+      //   });
+
+      //   imgLoad
+      //     .then(function () {
+      //       console.log('로딩 성공');
+      //     })
+      //     .catch(function () {
+      //       console.log('로딩 실패');
+      //     });
+      //
+      //
+    </script>
+
+    <!-- 4. fetch -->
+    <script>
+      //   // fetch메서드는 Promise객체를 반환하는데,이 객체는 서버로 부터 받은 response객체를 나타낸다
+      //   fetch('https://section.blog.naver.com/') // 자동으로 GET요청을 서버에게 보낸다
+      //     .then((response) => {
+      //       // (수신한 데이터)
+      //       if (!response.ok) {
+      //         // 모든 에러를 캐치할수 있는 방법
+      //         // 예외(exception)를 발생시키는 구문
+      //         // 예외를 발생시켜 이후에 실행되는 코드블록에서 예외 처리 할수있다
+      //         throw new Error('400 or 500 error');
+      //       }
+      //       return response.json();
+      //     })
+      //     // 1번 .then에서 반환한 데이터
+      //     .then((result2) => {
+      //       console.log(result2);
+      //     })
+      //     .catch(() => {
+      //       console.log('error');
+      //     });
+    </script>
+    <!--  -->
+
+    <!-- 5. -->
+    <div class="btn">버튼</div>
+    <script>
+      //   //    async / await
+
+      //   // async를 function 앞에 붙이면 함수가 Promise 역할가능
+      //   async function plus() {
+      //     var promise_el = new Promise(function (success, failed) {
+      //       var sum = 1 + 1;
+      //       success(100);
+      //     });
+
+      //     // async function 안에서 쓰는 await , then 대신 사용가능
+      //     var result = await promise_el; // 프로미스 해결까지 기다려
+      //     console.log(result);
+      //   }
+      //   console.log(plus()); // 100
+
+      //   // 6.
+      //   // 버튼 클릭시 성공 결과를 async / await 이용하여 출력하시오
+      //   async function btnClear() {
+      //     var clear = new Promise(function (good, no) {
+      //       var btn = document.querySelector('.btn');
+      //       btn.addEventListener('click', function () {
+      //         good('GOOD!');
+      //       });
+      //     });
+
+      //     var result1 = await clear;
+      //     console.log(result1);
+      //   }
+      //   console.log(btnClear()); //GOOD!
+    </script>
+  </body>
+</html>
